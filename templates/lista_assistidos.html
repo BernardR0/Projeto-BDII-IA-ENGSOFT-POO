@@ -3,25 +3,18 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Nome</th>
-      <th scope="col">Email</th>
+      <th scope="col">Data de Nascimento</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Gênero</th>
       <th scope="col">Ações</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="lista-assistidos">
     
     {% for assistido in assistidos %}
-    
-    <tr>
-      <th scope="row">{{ assistido.id }}</th>
-      <td>{{ assistido.nome }}</td>
-      <td>{{ assistido.email }}</td>
-      <td>
-        <button class="btn btn-primary">Editar</button>
-        <button class="btn btn-danger">Deletar</button>
-      </td>
-    </tr>
-
+          {% include 'item_cliente.html' %}
     {% endfor %}
     
   </tbody>
 </table>
+

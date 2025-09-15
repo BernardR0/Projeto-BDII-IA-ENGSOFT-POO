@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from logica_fuzzy import calculo_fuzzy
 from routes.home import home_route
 from routes.assistidos import assistidos_route
