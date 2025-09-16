@@ -1,0 +1,44 @@
+<form class="c-form" 
+       
+    {% if operador %}
+        action="{{ url_for('operadores.editar_operador', operador_id=operador.id_operador) }}" 
+    {% else %}
+        action="{{ url_for('operadores.inserir_operador') }}" 
+    {% endif %}  
+        
+        method="{% if operador %}PUT{% else %}POST{% endif %}"
+        
+
+
+        {% if operador %}
+            c-swap=".operador-{{operador.id_operador}}"      
+        {% else %}
+            c-append="#lista-operadores"
+        {% endif %}
+        c-reload-container="true"
+        >
+
+        
+      
+
+  <div class="mb-3">
+    <label class="form-label">Nome Completo:</label>
+    <input type="text" class="form-control" name="nome" {% if operador %}value="{{operador.nome}}"{% endif %}>
+  </div>
+
+  <div class="mb-3">
+  <label for="data_nascimento">Função:</label>
+  <input type="text" class="form-control" id="funcao" name="funcao" {% if operador %}value="{{operador.funcao}}"{% endif %}>
+  </div>
+
+
+  {% if operador %}
+  <button type="submit" class="btn btn-primary">
+    Salvar
+ </button>
+  {% else %}
+ <button type="submit" class="btn btn-primary" c-post="{{ url_for('operadores.inserir_operador') }}">
+    Criar Operador
+ </button>
+  {% endif %}
+</form>

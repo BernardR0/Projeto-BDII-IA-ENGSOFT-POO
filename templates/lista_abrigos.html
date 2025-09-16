@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Endereço</th>
+      <th scope="col">Capacidade Total</th>
+      <th scope="col">Status da Operação</th>
+      <th scope="col">Tipo</th>
+    </tr>
+  </thead>
+  <tbody id="lista-abrigos">
+    
+    {% for abrigo in abrigos %}
+          {% include 'item_abrigo.html' %}
+    {% endfor %}
+    
+  </tbody>
+</table>
+

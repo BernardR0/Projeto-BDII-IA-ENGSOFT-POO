@@ -74,8 +74,6 @@ sistema = ctrl.ControlSystemSimulation(sistema_ctrl)
 
 
 def calculo_fuzzy(num_pessoas, num_vagas, num_prioridade):
-    
-
     sistema.input['pessoas']    = num_pessoas
     sistema.input['vagas']      = num_vagas
     sistema.input['prioridade'] = num_prioridade
@@ -96,6 +94,11 @@ def calculo_fuzzy(num_pessoas, num_vagas, num_prioridade):
             "prioridade_fuzzy": float(resultado),
             "status": status
         }
-        
     else:
         print("\n Nenhuma regra foi ativada para os valores informados!\n")
+        # retorno padrão para não quebrar a aplicação
+        return {
+            "prioridade_fuzzy": 0.0,
+            "status": "Indefinido"
+        }
+

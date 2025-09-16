@@ -7,6 +7,7 @@ class BaseModel(Model):
 
 class Abrigo(BaseModel):
     id_abrigo = AutoField()
+    codigo_publico = IntegerField()
     nome = CharField()
     endereco = CharField()
     capacidade_total = IntegerField()
@@ -19,10 +20,14 @@ class Abrigo(BaseModel):
 
 class Assistido(BaseModel):
     id_assistido = AutoField()
+    codigo_publico = IntegerField()
     nome = CharField()
     data_nascimento = DateField(null=True)
     telefone = CharField(null=True)
     genero = CharField(null=True)
+    prioridade_fuzzy = FloatField(null=True)   # valor calculado (0-100)
+    status_prioridade = CharField(null=True)   # "Recusado", "Neutro" ou "Aprovado"
+
 
     class Meta:
         table_name = 'assistido'
@@ -30,6 +35,7 @@ class Assistido(BaseModel):
 
 class Operador(BaseModel):
     id_operador = AutoField()
+    codigo_publico = IntegerField(unique=True)
     nome = CharField()
     funcao = CharField()
 

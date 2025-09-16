@@ -1,7 +1,31 @@
-<ul>
-    <li>ID: {{assistido.id}}</li>
-    <li>NOME: {{assistido.nome}}</li>
-    <li>DATA DE NASCIMENTO: {{assistido.data}}</li>
-    <li>TELEFONE: {{assistido.telefone}}</li>
-    <li>GÊNERO: {{assistido.genero}}</li>
-</ul>
+<h2>Detalhes do Assistido</h2>
+
+<p><strong>Nome:</strong> {{ assistido.nome }}</p>
+<p><strong>Data de Nascimento:</strong> {{ assistido.data }}</p>
+<p><strong>Telefone:</strong> {{ assistido.telefone }}</p>
+<p><strong>Gênero:</strong> {{ assistido.genero }}</p>
+
+<hr>
+
+<h3>Resultado da Triagem</h3>
+{% if assistido.prioridade_fuzzy %}
+  <p><strong>Prioridade Fuzzy:</strong> {{ assistido.prioridade_fuzzy | round(2) }}</p>
+  <p><strong>Status:</strong> 
+    {% if assistido.status_prioridade == "Aprovado" %}
+      <span class="badge bg-success">{{ assistido.status_prioridade }}</span>
+    {% elif assistido.status_prioridade == "Recusado" %}
+      <span class="badge bg-danger">{{ assistido.status_prioridade }}</span>
+    {% else %}
+      <span class="badge bg-warning text-dark">{{ assistido.status_prioridade }}</span>
+    {% endif %}
+  </p>
+{% else %}
+  <p>Nenhuma triagem realizada ainda.</p>
+{% endif %}
+
+<hr>
+
+<a href="{{ url_for('triagem.form_triagem', assistido_id=assistido.id_assistido) }}" class="btn btn-primary">
+  Realizar Triagem
+</a>
+<a href="{{ url_for('assistidos.lista_assistidos') }}" class="btn btn-secondary">Voltar</a>

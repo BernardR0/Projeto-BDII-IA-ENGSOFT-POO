@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Função</th>
+    </tr>
+  </thead>
+  <tbody id="lista-operadores">
+    
+    {% for operador in operadores %}
+          {% include 'item_operador.html' %}
+    {% endfor %}
+    
+  </tbody>
+</table>
+

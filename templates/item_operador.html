@@ -1,0 +1,27 @@
+<tr class="operador-{{operador.id_operador}}">
+      <th scope="row">{{ operador.codigo_publico }}</th>
+      <td>{{ operador.nome }}</td>
+      <td>{{ operador.funcao }}</td>
+      <td>
+        
+        
+        <button class="btn btn-secondary" 
+        c-get="{{ url_for('operadores.detalhe_operador', operador_id=operador.id_operador) }}"
+        c-target="#exibir-operador"
+        data-bs-toggle="modal" data-bs-target="#exampleModal3"
+        >
+        Ver
+    </button>
+        <button class="btn btn-primary" 
+        c-get="{{ url_for('operadores.form_edit_operador', operador_id=operador.id_operador) }}"
+        c-target="#form-operador"
+        >
+        Editar
+    </button>
+        <button class="btn btn-danger" 
+        c-delete="{{ url_for('operadores.deletar_operador', operador_id=operador.id_operador) }}" 
+        c-remove-closest="tr">
+        Deletar
+    </button>
+      </td>
+ </tr>

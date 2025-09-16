@@ -1,23 +1,34 @@
 from flask import Blueprint, render_template, request
-from database.assistidos import ASSISTIDOS
 from models.models_clean import Assistido
 assistidos_route = Blueprint('assistidos', __name__)
 
 
 @assistidos_route.route('/')
 def lista_assistidos():
-    assistidos=Assistido.select()
-    return render_template('lista_assistidos.html', assistidos=assistidos)
+  assistidos=Assistido.select()
+  return render_template('lista_assistidos.html', assistidos=assistidos)
 
 @assistidos_route.route('/', methods=['POST'])
 def inserir_assistido():
     data = request.form or request.json
-    
+    # 1️⃣ Busca todos os códigos existentes
+    codigos_existentes = [a.codigo_publico for a in Assistido.select() if a.codigo_publico is not None]
+    codigos_existentes.sort()
+
+    # 2️⃣ Encontra o menor código livre
+    proximo_codigo = 1
+    for codigo in codigos_existentes:
+        if codigo == proximo_codigo:
+            proximo_codigo += 1
+        else:
+            break  # encontrou um "buraco", reutiliza
+
     novo_usuario = Assistido.create(
         nome = data['nome'],
         data = data['data_nascimento'],
         telefone = data['telefone'],
-        genero = data['genero']
+        genero = data['genero'],
+        codigo_publico=proximo_codigo
     )
     
 

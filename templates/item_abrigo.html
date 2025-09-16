@@ -1,0 +1,30 @@
+<tr class="abrigo-{{abrigo.id_abrigo}}">
+      <th scope="row">{{ abrigo.codigo_publico }}</th>
+      <td>{{ abrigo.nome }}</td>
+      <td>{{ abrigo.endereco }}</td>
+      <td>{{ abrigo.capacidade_total }}</td>
+      <td>{{ abrigo.status_operacao }}</td>
+      <td>{{ abrigo.tipo }}</td>
+      <td>
+        
+        
+        <button class="btn btn-secondary" 
+        c-get="{{ url_for('abrigos.detalhe_abrigo', abrigo_id=abrigo.id_abrigo) }}"
+        c-target="#exibir-abrigo"
+        data-bs-toggle="modal" data-bs-target="#exampleModal2"
+        >
+        Ver
+    </button>
+        <button class="btn btn-primary" 
+        c-get="{{ url_for('abrigos.form_edit_abrigo', abrigo_id=abrigo.id_abrigo) }}"
+        c-target="#form-abrigo"
+        >
+        Editar
+    </button>
+        <button class="btn btn-danger" 
+        c-delete="{{ url_for('abrigos.deletar_abrigo', abrigo_id=abrigo.id_abrigo) }}" 
+        c-remove-closest="tr">
+        Deletar
+    </button>
+      </td>
+ </tr>
