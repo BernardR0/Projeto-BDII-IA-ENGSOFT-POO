@@ -1,7 +1,7 @@
 <form class="c-form" 
        
     {% if assistido %}
-        action="{{ url_for('assistidos.atualizar_assistido', assistido_id=assistido.id) }}" 
+        action="{{ url_for('assistidos.atualizar_assistido', assistido_id=assistido.id_assistido) }}" 
     {% else %}
         action="{{ url_for('assistidos.inserir_assistido') }}" 
     {% endif %}  
@@ -11,7 +11,7 @@
 
 
         {% if assistido %}
-            c-swap=".assistido-{{assistido.id}}"      
+            c-swap=".assistido-{{assistido.id_assistido}}"      
         {% else %}
             c-append="#lista-assistidos"
         {% endif %}

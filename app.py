@@ -1,16 +1,11 @@
 from flask import Flask, url_for
 from logica_fuzzy import calculo_fuzzy
-from routes.home import home_route
-from routes.assistidos import assistidos_route
-from routes.abrigos import abrigos_route
-from routes.operadores import operadores_route
+from configuration import configure_all
+
 
 app = Flask(__name__)
 
-app.register_blueprint(home_route)
-app.register_blueprint(assistidos_route,  url_prefix='/assistidos')
-app.register_blueprint(abrigos_route,  url_prefix='/abrigos')
-app.register_blueprint(operadores_route,  url_prefix='/operadores')
+configure_all(app)
 
 app.run(debug=True)
 
