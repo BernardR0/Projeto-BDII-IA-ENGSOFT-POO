@@ -25,7 +25,7 @@ def inserir_assistido():
 
     novo_usuario = Assistido.create(
         nome = data['nome'],
-        data = data['data_nascimento'],
+        data_nascimento = data['data_nascimento'],
         telefone = data['telefone'],
         genero = data['genero'],
         codigo_publico=proximo_codigo
@@ -51,13 +51,14 @@ def form_edit_assistido(assistido_id):
 
 @assistidos_route.route('/<int:assistido_id>/update', methods=['PUT'])
 def atualizar_assistido(assistido_id):
-    data = request.json
+    data = request.form or request.json
     
     assistido = Assistido.get(Assistido.id_assistido == assistido_id)
-    assistido.nome = data['nome']
-    assistido.data = data['data_nascimento']
-    assistido.telefone = data['telefone']
-    assistido.genero = data['genero']
+    assistido.nome = data.get('nome')
+    assistido.data_nascimento = data.get('data_nascimento') or None
+    assistido.telefone = data.get('telefone')
+    assistido.genero = data.get('genero')
+    assistido.save()
 
     return render_template('item_cliente.html', assistido=assistido)
 

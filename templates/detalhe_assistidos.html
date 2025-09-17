@@ -1,7 +1,7 @@
 <h2>Detalhes do Assistido</h2>
 
 <p><strong>Nome:</strong> {{ assistido.nome }}</p>
-<p><strong>Data de Nascimento:</strong> {{ assistido.data }}</p>
+<p><strong>Data de Nascimento:</strong> {{ assistido.data_nascimento }}</p>
 <p><strong>Telefone:</strong> {{ assistido.telefone }}</p>
 <p><strong>Gênero:</strong> {{ assistido.genero }}</p>
 
@@ -28,4 +28,4 @@
 <a href="{{ url_for('triagem.form_triagem', assistido_id=assistido.id_assistido) }}" class="btn btn-primary">
   Realizar Triagem
 </a>
-<a href="{{ url_for('assistidos.lista_assistidos') }}" class="btn btn-secondary">Voltar</a>
+<a href="{{ url_for('home.home') }}" class="btn btn-secondary">Voltar</a>
